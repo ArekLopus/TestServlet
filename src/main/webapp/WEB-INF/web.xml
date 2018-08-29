@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+    
+    <session-config>
+        <session-timeout>30</session-timeout>   <!-- 30 minutes -->
+        <tracking-mode>COOKIE</tracking-mode>
+    </session-config>
+    
+    <!-- This is a context init parameter -->
+    <context-param>
+        <param-name>email</param-name>
+        <param-value>admin@example.com</param-value>
+    </context-param>
+    
+    
+    <servlet>
+        <servlet-name>NoAnnotationServlet</servlet-name>
+        <servlet-class>webservlet.noannotationservlet.NoAnnotationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NoAnnotationServlet</servlet-name>
+        <url-pattern>/noAnnotationServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>InitParamsServlet</servlet-name>
+        <!-- This is a servlet init parameter -->
+        <init-param>
+            <param-name>def</param-name>
+            <param-value>Overriden in web.xml</param-value>
+        </init-param>
+    </servlet>
+    <servlet>
+        <servlet-name>lifecycleServlet</servlet-name>
+        <init-param>
+            <param-name>initParam</param-name>
+            <param-value>init param from web.xml</param-value>
+        </init-param>
+    </servlet>
+    
+    
+    <listener>
+    	<listener-class>listeners.noannotation.ServletContextListenetNoAnnotation</listener-class>
+    </listener>
+    
+    
+<!--     <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>/HelloServlet</welcome-file>
+    </welcome-file-list>
+ -->
+	
+    <error-page>
+        <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+        <location>/index.jsp</location>
+    </error-page>
+    
+
+    
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Forbidden Resources</web-resource-name>
+            <url-pattern>/logged/*</url-pattern>
+            <url-pattern>/secured/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Secured Resources</web-resource-name>
+            <url-pattern>/ssl/*</url-pattern>
+        </web-resource-collection>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+
+
+
+    <!-- BASIC login config -->
+    <login-config>
+        <auth-method>BASIC</auth-method>
+        <realm-name>file-realm</realm-name>
+    </login-config>
+
+    <!-- FORM login config -->
+    <!-- <login-config> 
+        <auth-method>FORM</auth-method> 
+        <form-login-config> 
+            <form-login-page>/sec/formLogin.html</form-login-page> 
+            <form-error-page>/sec/failure.html</form-error-page> 
+        </form-login-config> 
+    </login-config> -->
+
+  
+	<security-role>
+		<role-name>admin</role-name>
+	</security-role>
+
+	<security-role>
+		<role-name>user</role-name>
+	</security-role>
+
+	<security-role>
+		<role-name>guest</role-name>
+	</security-role>
+    
+</web-app>
