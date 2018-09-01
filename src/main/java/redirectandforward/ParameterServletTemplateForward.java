@@ -12,6 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import helper.User;
 
+//-When forwarding the URL remains the same!
+//-Forwards the request to another resource in our web application. This resource is typically another servlet or JSP page.
+//-To do this, we use the forward method belonging to the RequestDispatcher interface.
+//		request.getRequestDispatcher("products.jsp").forward(request, response);
+//-This approach is faster because everything happens in a single response-request cycle.
+
 //	parameters/paramPostTemplateForward.html
 @WebServlet("/parameterServletTemplateForward")
 public class ParameterServletTemplateForward extends HttpServlet {

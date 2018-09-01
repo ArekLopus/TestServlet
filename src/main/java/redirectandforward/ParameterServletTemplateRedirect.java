@@ -12,6 +12,12 @@ import javax.servlet.http.HttpSession;
 
 import helper.User;
 
+//-Redirect will send a HTTP 302 response instructing the browser to perform a new GET request to the specified URL.
+//-To do this, we use the sendRedirect() belonging to the HttpServletResponse interface:
+//		response.sendRedirect("https://www.google.com");
+//-This is useful when we want to send the user to a different domain or server outside of our web application.
+//-The drawback is that we lose the original request along with its parameters and attributes.
+
 //	parameters/paramPostTemplateRedirect.html
 @WebServlet("/parameterServletTemplateRedirect")
 public class ParameterServletTemplateRedirect extends HttpServlet {
