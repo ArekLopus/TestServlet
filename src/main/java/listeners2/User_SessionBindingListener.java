@@ -4,7 +4,7 @@ import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionBindingListener;
 
 //HttpSessionBindingListener used to inform an object when it is added to or removed from a HttpSession
-public class User implements HttpSessionBindingListener {
+public class User_SessionBindingListener implements HttpSessionBindingListener {
 	
 	private String name;
 	private String surname;
@@ -15,21 +15,21 @@ public class User implements HttpSessionBindingListener {
 	
 	@Override
 	public void valueBound(HttpSessionBindingEvent event) {
-		System.out.println("HttpSessionBindingListener.valueBound()");
+		System.out.println("User's HttpSessionBindingListener.valueBound()");
 		
 	}
 
 	@Override
 	public void valueUnbound(HttpSessionBindingEvent event) {
-		System.out.println("HttpSessionBindingListener.valueUnbound()");
+		System.out.println("User's HttpSessionBindingListener.valueUnbound()");
 		
 	}
 
 	
 	
-	public User() {}
+	public User_SessionBindingListener() {}
 	
-	public User(String name, String surname, String city, String phone) {
+	public User_SessionBindingListener(String name, String surname, String city, String phone) {
 		super();
 		this.name = name;
 		this.surname = surname;
