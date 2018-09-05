@@ -56,9 +56,12 @@
 	
     <error-page>
         <exception-type>javax.faces.application.ViewExpiredException</exception-type>
-        <location>/index.jsp</location>
+        <location>/hello.jsp</location>
     </error-page>
-    
+    <error-page>
+		<exception-type>java.lang.ArithmeticException</exception-type>
+		<location>/exceptionsHandling/errorPage.jsp</location>
+	</error-page>
 
     
     <security-constraint>

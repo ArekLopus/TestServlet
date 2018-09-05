@@ -1,4 +1,4 @@
-package a;
+package exceptionsHandling;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/TestServlet")
-public class TestServlet extends HttpServlet {
+@WebServlet("/exceptionServlet2")
+public class TestServletCustomExceptionObject extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	
@@ -20,7 +20,16 @@ public class TestServlet extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		out.println("<h2>Servlet</h2>");
-		out.println("");
+		
+		try {
+			int x = 10/0;
+			out.println( x );
+		} catch (Exception e) {
+			request.setAttribute("exception", e);
+			request.getRequestDispatcher("/exceptionsHandling/errorPageCustomExceptionObject.jsp").forward(request, response);
+		}
+		
+		
 		
 	}
 	
